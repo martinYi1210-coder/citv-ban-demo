@@ -12,21 +12,21 @@
 │   (CITV)    │                                  │ (SaaS平台)  │
 └──────┬──────┘                                  └──────┬──────┘
        │                                                │
-       │ 1. 准备请求参数：                               │
+       │ 1. 准备请求参数：                                │
        │    - ccid, casn, action, code, message         │
        │                                                │
-       │ 2. 生成请求头：                                 │
-       │    - timestamp: 13位Unix时间戳                 │
-       │    - nonce: 随机字符串(防重放)                 │
-       │    - appid: 应用唯一标识                       │
+       │ 2. 生成请求头：                                  │
+       │    - timestamp: 13位Unix时间戳                  │
+       │    - nonce: 随机字符串(防重放)                    │
+       │    - appid: 应用唯一标识                         │
        │                                                │
-       │ 3. 使用【CITV私钥】生成请求签名                │
-       │    签名范围: appid + casn + ccid + nonce + timestamp │
-       │    算法: SHA256withRSA → Base64编码           │
+       │ 3. 使用【CITV私钥】生成请求签名                    │
+       │    签名范围: appid+casn+ccid+nonce+timestamp    │
+       │    算法: SHA256withRSA → Base64编码             │
        │                                                │
-       │─────────────── POST /ban/v2 ─────────────────►│
-       │   请求头: sign, timestamp, nonce, appid        │
-       │   请求体: {ccid, casn, action, code, message}  │
+       │─────────────── POST /ban/v2 ─────────────────► │
+       │   请求头: sign, timestamp, nonce, appid         │
+       │   请求体: {ccid, casn, action, code, message}   │
        │                                                │
        │                                                │ 4. 验证请求签名
        │                                                │    使用【CITV公钥】验证
@@ -41,14 +41,14 @@
        │                                                │    ticketId, ccid, nonce, timestamp
        │                                                │
        │                                                │ 9. 使用【SaaS私钥】生成响应签名
-       │                                                │    签名范围: ccid + nonce + ticketId + timestamp
+       │                                                │    签名范围: ccid+nonce+ticketId+timestamp
        │                                                │
-       │◄──────────────── 返回响应 ─────────────────────│
+       │◄──────────────── 返回响应 ───────────────────── │
        │    {ticketId, ccid, nonce, timestamp, sign}    │
        │                                                │
-       │ 10. 使用【SaaS公钥】验证响应签名               │
+       │ 10. 使用【SaaS公钥】验证响应签名                   │
        │                                                │
-       │ 11. 完成！                                     │
+       │ 11. 完成！                                      │
 ```
 
 ---
