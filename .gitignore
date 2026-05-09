@@ -1,0 +1,19 @@
+# IDE
+.idea/
+.vscode/
+
+# Go
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Dependencies
+vendor/
+
+# Environment
+.env
+.env.local
